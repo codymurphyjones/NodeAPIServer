@@ -25,23 +25,23 @@ The API_Router class is the backbone of the server, it will handle all of the ro
 
 #### API_Router.StartServer()
 
-    The StartServer function is what initializes the loop for the webserver, this is the last function to call in your main file, after your modules are imported and your routes are specified.
+The StartServer function is what initializes the loop for the webserver, this is the last function to call in your main file, after your modules are imported and your routes are specified.
         
-    StartServer runs the API_Router.LoadRoute function, this function will parse the URL into an array and allow utilization for data/route management.  API_Router.Data will give you direct access to this data.  If the the system determines the user tried to download a file, it will throw an error.
+StartServer runs the API_Router.LoadRoute function, this function will parse the URL into an array and allow utilization for data/route management.  API_Router.Data will give you direct access to this data.  If the the system determines the user tried to download a file, it will throw an error.
 
 #### API_Router.RemoveLastDataPoint()
 
-    When the data is moving its way through the program loop, sometimes the data that got you to the module you're in is no longer useful once the module is loaded.  This function lets you drop the first data point in the current array.
+When the data is moving its way through the program loop, sometimes the data that got you to the module you're in is no longer useful once the module is loaded.  This function lets you drop the first data point in the current array.
         
-    http://localhost:8080/user/add/23123/
+http://localhost:8080/user/add/23123/
         
-    {"user", "add", "23123"}
+{"user", "add", "23123"}
         
-    As an example, this is the array that would exist should you connect to this URL.  The first item "user" is the module specified, once we are inside of the module, the request will not be traveling to any other modules and by removing  the "user" value, we can ensure our modules are working dynamically through the webserver rather than being index specific for all of the values we need.
+As an example, this is the array that would exist should you connect to this URL.  The first item "user" is the module specified, once we are inside of the module, the request will not be traveling to any other modules and by removing  the "user" value, we can ensure our modules are working dynamically through the webserver rather than being index specific for all of the values we need.
         
 #### API_Router.RegisterModule(module_obj)
 
-    The RegisterModule function will register the module into the routing system.  If you have a module that hasn't been called into the RegisterModule function the module will not exist within the webserver.
+The RegisterModule function will register the module into the routing system.  If you have a module that hasn't been called into the RegisterModule function the module will not exist within the webserver.
         
         
 ## API_Module
