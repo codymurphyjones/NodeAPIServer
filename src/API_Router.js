@@ -6,6 +6,9 @@ var API_Router = {};
 API_Router.Routes = [];
 
 API_Router.Data = {};
+API_Router.PostData = {};
+
+API_Router.Request = "GET"
 
   
 API_Router.LoadRoute = (function(url = "") {  
@@ -85,6 +88,19 @@ API_Router.StartServer = (function() {
 http.createServer(function (req, res) {
     console.log("Processing Request: " + req.url)
     var req_data = API_Router.LoadRoute(req.url);
+    API_Router.request = req.method;
+    
+    ///TODO Convert POSTDATA TO KEYPAIR
+    if(API_Router.request == "POST") {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString(); // convert Buffer to string
+        });
+        
+        req.on('end', () => {
+            console.log(body);
+        });
+    }
     
     if(!API_Router.isFile) {
         res.setHeader('Content-Type', 'application/json');
